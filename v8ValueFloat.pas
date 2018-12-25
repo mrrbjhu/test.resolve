@@ -661,6 +661,25 @@ function Float_Add(V1, V2: Pv8Float; out Res: Pv8Float): Boolean;
 var
   i, n, cmp: Integer;
 begin
+  if Float_IsZero(V1) then
+  begin
+    if Float_IsZero(V2) then exit(nil)
+    else
+    begin
+      Result := V2;
+      exit;
+    end;
+  end;
+  if Float_IsZero(V2) then
+  begin
+    if Float_IsZero(V1) then exit(nil)
+    else
+    begin
+      Result := V1;
+      exit;
+    end;
+  end;
+
   if V1.Negative = V2.Negative then
   begin
     Result := Float_AddAbs(V1, V2, Res);
